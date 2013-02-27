@@ -1,0 +1,1 @@
+/Users/egall/usr/bin/../share/aclocal/ltversion.m4
