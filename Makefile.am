@@ -1,4 +1,4 @@
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 --install
 
 # -----------------------------------------------------------------
 #   Makefile for GCTA 
@@ -16,7 +16,7 @@ OUTPUT = gcta64
 # Use sinlge precision to store matrix
 SINGLE_PRECISION = 
 
-# Put C++ compiler here; Windows has it's own specific version
+# Put C++ compiler here; Windows has its own specific version
 CXX_UNIX = @CXX@
 CXX_WIN = C:\CodeBlocks\MinGW\bin\mingw32-g++.exe
 CXX_MAC = @CXX@
@@ -31,35 +31,35 @@ CXXFLAGS = @CXXFLAGS@
 CXXFLAGS += -w -O3 -I $(EigenLib) -DEIGEN_NO_DEBUG -msse2 -I.
 LDFLAGS = @LDFLAGS@
 
-ifdef SINGLE_PRECISION
- CXXFLAGS += -DSINGLE_PRECISION=1
-endif
+@ifGNUmake@ifdef SINGLE_PRECISION
+@ifGNUmake@ CXXFLAGS += -DSINGLE_PRECISION=1
+@ifGNUmake@endif
 
 LIB = @LIB@
 
 # Some system specific flags
 
-ifeq ($(SYS),WIN)
- CXXFLAGS += -DWIN -static -I ../../Lib/zlib
- LIB += ../../Lib/zlib/zlib.lib
- CXX = $(CXX_WIN)
-endif
+@ifGNUmake@ifeq ($(SYS),WIN)
+@ifGNUmake@ CXXFLAGS += -DWIN -static -I ../../Lib/zlib
+@ifGNUmake@ LIB += ../../Lib/zlib/zlib.lib
+@ifGNUmake@ CXX = $(CXX_WIN)
+@ifGNUmake@endif
 
-ifeq ($(SYS),UNIX)
- CXXFLAGS += -DUNIX -static
- LIB += -lz
- CXX = $(CXX_UNIX)
-endif
+@ifGNUmake@ifeq ($(SYS),UNIX)
+@ifGNUmake@ CXXFLAGS += -DUNIX -static
+@ifGNUmake@ LIB += -lz
+@ifGNUmake@ CXX = $(CXX_UNIX)
+@ifGNUmake@endif
 
-ifeq ($(SYS),MAC)
- CXXFLAGS += -DUNIX -Dfopen64=fopen #-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5
- LIB += -lz
- CXX = $(CXX_MAC)
-endif
+@ifGNUmake@ifeq ($(SYS),MAC)
+@ifGNUmake@ CXXFLAGS += -DUNIX -Dfopen64=fopen @MAINT@ -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5
+@ifGNUmake@ LIB += -lz
+@ifGNUmake@ CXX = $(CXX_MAC)
+@ifGNUmake@endif
 
-ifeq ($(SYS),SOLARIS)
- CXX = $(CXX_UNIX)
-endif
+@ifGNUmake@ifeq ($(SYS),SOLARIS)
+@ifGNUmake@ CXX = $(CXX_UNIX)
+@ifGNUmake@endif
 
 HDR = @HDR@
 
@@ -102,5 +102,5 @@ $(OUTPUT) : $(OBJ)
 
 FORCE:
 
-clean:
+clean-local:
 	@RM@ -f *.o *~

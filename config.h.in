@@ -24,6 +24,9 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
+/* Define to 1 if you have the `c' library (-lc). */
+#undef HAVE_LIBC
+
 /* Define to 1 if you have the `crt0.o' library (-lcrt0.o). */
 #undef HAVE_LIBCRT0_O
 
@@ -38,6 +41,9 @@
 
 /* define if the compiler implements namespaces */
 #undef HAVE_NAMESPACES
+
+/* Define if g++ supports namespace std. */
+#undef HAVE_NAMESPACE_STD
 
 /* define if the compiler has numeric_limits<T> */
 #undef HAVE_NUMERIC_LIMITS
@@ -96,12 +102,8 @@
 /* Define to 1 if the system has the type `_Bool'. */
 #undef HAVE__BOOL
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
-
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-#undef NO_MINUS_C_MINUS_O
 
 /* Name of package */
 #undef PACKAGE
@@ -117,6 +119,9 @@
 
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
@@ -135,9 +140,6 @@
 
 /* Version number of package */
 #undef VERSION
-
-/* Define if using GNU regex */
-#undef WITH_REGEX
 
 /* Define like PROTOTYPES; this can be used by system headers. */
 #undef __PROTOTYPES

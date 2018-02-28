@@ -12,6 +12,7 @@ eigen/*/CMakeFiles/*
 eigen/Eigen/src/*
 eigen/bench/*
 eigen/blas/*
+eigen/build/*
 eigen/demos/*
 eigen/doc/*
 eigen/failtest/*
@@ -22,6 +23,7 @@ stamp-h*
 libtool
 config.h
 Makefile
-Makefile.orig
+Makefile*orig
 m4/autoconf/*
 m4/m4sugar/*
+CMakeFiles/*

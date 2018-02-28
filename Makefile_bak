@@ -15,20 +15,17 @@ OUTPUT = gcta64
 # Use sinlge precision to store matrix
 SINGLE_PRECISION = 
 
-# Put C++ compiler here; Windows has it's own specific version
-CXX_UNIX = @CXX@
+# Put C++ compiler here; Windows has its own specific version
+CXX_UNIX = g++
 CXX_WIN = C:\CodeBlocks\MinGW\bin\mingw32-g++.exe
-CXX_MAC = @CXX@
+CXX_MAC = g++
 
 # Put the path of library EIGEN here
 # Library EIGEN (version 3.0.3) is freely available at http://eigen.tuxfamily.org/
-EigenLib = ./eigen
+EigenLib = ../../../Lib/eigen
 
 # Any other compiler flags here ( -Wall, -g, etc)
-CPPFLAGS = @CPPFLAGS@
-CXXFLAGS = @CXXFLAGS@
-CXXFLAGS += -w -O3 -I $(EigenLib) -DEIGEN_NO_DEBUG -msse2 -I.
-LDFLAGS = @LDFLAGS@
+CXXFLAGS = -w -O3 -I $(EigenLib) -DEIGEN_NO_DEBUG -msse2 -I.
 
 ifdef SINGLE_PRECISION
  CXXFLAGS += -DSINGLE_PRECISION=1
@@ -54,9 +51,9 @@ ifeq ($(SYS),MAC)
  CXX = $(CXX_MAC)
 endif
 
-ifeq ($(SYS),SOLARIS)
- CXX = $(CXX_UNIX)
-endif
+#ifeq ($(SYS),SOLARIS)
+# CXX = $(CXX_UNIX)
+#endif
 
 HDR += CommFunc.h \
 	   cdflib.h \
@@ -84,12 +81,12 @@ OBJ = $(SRC:.cpp=.o)
 all : $(OUTPUT) 
 
 $(OUTPUT) :
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(OUTPUT) $(OBJ) $(LDFLAGS) $(LIB) 
+	$(CXX) $(CXXFLAGS) -o $(OUTPUT) $(OBJ) $(LIB) 
 
 $(OBJ) : $(HDR)
 
 .cpp.o : 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $*.cpp
+	$(CXX) $(CXXFLAGS) -c $*.cpp
 .SUFFIXES : .cpp .c .o $(SUFFIXES)
 
 $(OUTPUT) : $(OBJ)
@@ -97,4 +94,4 @@ $(OUTPUT) : $(OBJ)
 FORCE:
 
 clean:
-	@RM@ -f *.o *~
+	rm -f *.o *~
