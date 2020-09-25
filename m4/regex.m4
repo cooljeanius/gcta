@@ -8,7 +8,7 @@
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-# serial 15
+# serial 16
 
 # AM_WITH_REGEX
 # -------------
@@ -28,28 +28,37 @@
 # result in a smaller executable file.
 #
 AC_DEFUN([AM_WITH_REGEX],
-[AC_PREREQ(2.50)dnl
+[AC_PREREQ([2.50])dnl
 m4_warn([obsolete], [$0 is obsolete, since GNU rx is unmantained now])dnl
 AC_LIBSOURCES([rx.h, rx.c, regex.c, regex.h])dnl
 AC_MSG_CHECKING([which of GNU rx or gawk's regex is wanted])
 AC_ARG_WITH([regex],
-[  --without-regex         use GNU rx in lieu of gawk's regex for matching],
-	    [test "$withval" = yes && am_with_regex=1],
+	    [AS_HELP_STRING([--without-regex],
+	                    [use GNU rx in lieu of gawk's regex for matching])],
+	    [test "x${withval}" = "xyes" && am_with_regex=1],
 	    [am_with_regex=1])
-if test -n "$am_with_regex"; then
+if test -n "${am_with_regex}"; then
   AC_MSG_RESULT([regex])
-  AC_DEFINE([WITH_REGEX], 1, [Define if using GNU regex])
-  AC_CACHE_CHECK([for GNU regex in libc], [am_cv_gnu_regex],
-    [AC_TRY_LINK([],
-		 [extern int re_max_failures; re_max_failures = 1],
-		 [am_cv_gnu_regex=yes],
-		 [am_cv_gnu_regex=no])])
-  if test $am_cv_gnu_regex = no; then
-    AC_LIBOBJ([regex])
+  AC_DEFINE([WITH_REGEX],[1],[Define if using GNU regex])
+  AC_CACHE_CHECK([for GNU regex in libc],[am_cv_gnu_regex],
+    [AC_LINK_IFELSE([AC_LANG_PROGRAM([[]],[[extern int re_max_failures; re_max_failures = 1]])],
+    [am_cv_gnu_regex=yes],[am_cv_gnu_regex=no])])
+  if test "x${am_cv_gnu_regex}" = "xno"; then
+    if test -e "${LIBOBJDIR}/regex.c" || test -e "${srcdir}/regex.c"; then
+      AC_LIBOBJ([regex])
+    else
+      AC_MSG_WARN([need to make a regex.o libobj, but no regex.c found as a source for it])
+    fi
   fi
 else
   AC_MSG_RESULT([rx])
-  AC_CHECK_FUNC([re_rx_search], , [AC_LIBOBJ([rx])])
+  AC_CHECK_FUNC([re_rx_search],[],[
+    if test -e "${LIBOBJDIR}/rx.c" || test -e "${srcdir}/rx.c"; then
+      AC_LIBOBJ([rx])
+    else
+      AC_MSG_WARN([need to make an rx.o libobj, but no rx.c found as a source for it])
+    fi
+  ])
 fi[]dnl
 ])
 

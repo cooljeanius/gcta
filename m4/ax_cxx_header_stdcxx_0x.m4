@@ -19,19 +19,22 @@
 #   and this notice are preserved. This file is offered as-is, without any
 #   warranty.
 
-#serial 7
+#serial 8
 
 AU_ALIAS([AC_CXX_HEADER_STDCXX_0X], [AX_CXX_HEADER_STDCXX_0X])
 AC_DEFUN([AX_CXX_HEADER_STDCXX_0X], [
   AC_CACHE_CHECK(for ISO C++ 0x include files,
   ax_cv_cxx_stdcxx_0x,
   [AC_REQUIRE([AC_COMPILE_STDCXX_0X])
+  dnl# autoupdate says this is obsolete: Instead of using `AC_LANG',
+  dnl# `AC_LANG_SAVE', and `AC_LANG_RESTORE', you should use `AC_LANG_PUSH'
+  dnl# and `AC_LANG_POP'.
   AC_LANG_SAVE
-  AC_LANG_CPLUSPLUS
+  AC_LANG([C++])
   ac_save_CXXFLAGS="$CXXFLAGS"
   CXXFLAGS="$CXXFLAGS -std=gnu++0x"
 
-  AC_TRY_COMPILE([
+  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
     #include <cassert>
     #include <ccomplex>
     #include <cctype>
@@ -109,9 +112,8 @@ AC_DEFUN([AX_CXX_HEADER_STDCXX_0X], [
     #include <utility>
     #include <valarray>
     #include <vector>
-  ],,
-  ax_cv_cxx_stdcxx_0x=yes, ax_cv_cxx_stdcxx_0x=no)
-  AC_LANG_RESTORE
+  ]], [[]])],[ax_cv_cxx_stdcxx_0x=yes],[ax_cv_cxx_stdcxx_0x=no])
+  AC_LANG_POP([])
   CXXFLAGS="$ac_save_CXXFLAGS"
   ])
   if test "$ax_cv_cxx_stdcxx_0x" = yes; then
