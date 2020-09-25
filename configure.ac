@@ -25,8 +25,8 @@ m4_ifdef([AM_PROG_CC_C_O],[
 AC_PROG_CPP
 AC_SUBST([CPPFLAGS])dnl
 AC_PROG_CXX
-AC_PATH_PROG([RM],[rm])
-AC_SUBST([RM])dnl
+AC_PATH_PROGS([RM_PROG],[rm grm])
+AC_SUBST([RM_PROG])dnl
 LT_INIT([win32-dll])
 LT_LANG([C++])dnl
 

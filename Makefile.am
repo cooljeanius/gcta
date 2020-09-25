@@ -103,4 +103,4 @@ $(OUTPUT) : $(OBJ)
 FORCE:
 
 clean-local:
-	@RM@ -f *.o *~
+	@RM_PROG@ -f *.o *~

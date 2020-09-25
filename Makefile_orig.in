@@ -97,4 +97,4 @@ $(OUTPUT) : $(OBJ)
 FORCE:
 
 clean:
-	@RM@ -f *.o *~
+	@RM_PROG@ -f *.o *~
