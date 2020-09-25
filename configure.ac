@@ -1,10 +1,11 @@
-dnl#                                               -*- Autoconf -*-
+dnl# configure.ac                                  -*- Autoconf -*-
 dnl# Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.61])
+AC_PREREQ([2.69.185-b502e])
 AC_INIT([gcta],[0.93.9],[jian.yang@uq.edu.au])
 AC_CONFIG_SRCDIR([cdflib.h])
 AC_CONFIG_HEADER([config.h])
+AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([1.11.6])
@@ -53,7 +54,9 @@ CMAKE_FIND_BINARY
 CMAKE_FIND_PACKAGE([EIGEN],[CXX])dnl
 
 # Checks for header files.
-AC_HEADER_STDC
+# Autoupdate added the following line to ensure that your configure
+# script's behavior did not change.  It is probably safe to remove.
+AC_CHECK_INCLUDES_DEFAULT
 AC_CHECK_HEADERS([stdio.h])dnl
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -61,6 +64,7 @@ AC_HEADER_STDBOOL
 AC_C_CONST
 AC_C_INLINE
 AC_C_PROTOTYPES
+AC_TYPE_SIZE_T
 
 # Checks for library functions.
 AC_CHECK_FUNCS([atoi abs pow reverse sqrt seed_str stable_sort str_strm time])

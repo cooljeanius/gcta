@@ -36,9 +36,6 @@
 /* Define to 1 if you have the `z' library (-lz). */
 #undef HAVE_LIBZ
 
-/* Define to 1 if you have the <memory.h> header file. */
-#undef HAVE_MEMORY_H
-
 /* define if the compiler implements namespaces */
 #undef HAVE_NAMESPACES
 
@@ -72,13 +69,15 @@
 /* Define to 1 if you have the <stdio.h> header file. */
 #undef HAVE_STDIO_H
 
-/* Define to 1 if you have the <stdlib.h> header file. */
+/* Always define to 1, for backward compatibility. You can assume <stdlib.h>
+   exists. */
 #undef HAVE_STDLIB_H
 
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
-/* Define to 1 if you have the <string.h> header file. */
+/* Always define to 1, for backward compatibility. You can assume <string.h>
+   exists. */
 #undef HAVE_STRING_H
 
 /* Define to 1 if you have the `str_strm' function. */
@@ -135,11 +134,15 @@
 /* Define if ISO C++ TR1 header files are present. */
 #undef STDCXX_TR1_HEADERS
 
-/* Define to 1 if you have the ANSI C header files. */
+/* Always define to 1, for backward compatibility. You can assume the C90
+   standard headers exist. */
 #undef STDC_HEADERS
 
 /* Version number of package */
 #undef VERSION
+
+/* Define if using GNU regex */
+#undef WITH_REGEX
 
 /* Define like PROTOTYPES; this can be used by system headers. */
 #undef __PROTOTYPES
@@ -152,3 +155,6 @@
 #ifndef __cplusplus
 #undef inline
 #endif
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#undef size_t
