@@ -22,6 +22,7 @@ eigen/unsupported/*
 stamp-h*
 libtool
 config.h
+configure.lineno
 Makefile
 Makefile*orig
 m4/autoconf/*
