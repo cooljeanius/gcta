@@ -89,7 +89,8 @@ OBJ = $(SRC:.cpp=.o)
 all : $(OUTPUT) 
 
 $(OUTPUT) :
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(OUTPUT) $(OBJ) $(LDFLAGS) $(LIB) 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $(OUTPUT) $(OBJ) $(LDFLAGS) $(LIB) \
+	  $(LIBS)
 
 $(OBJ) : $(HDR)
 

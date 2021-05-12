@@ -33,7 +33,12 @@ LT_LANG([C++])dnl
 
 # Checks for libraries.
 AC_CHECK_LIB([c],[printf])
+AC_CHECK_LIB([z],[gzclose])
+AC_CHECK_LIB([z],[gzdopen])
+AC_CHECK_LIB([z],[gzopen])
 AC_CHECK_LIB([z],[gzread])
+AC_CHECK_LIB([z],[gzsetparams])
+AC_CHECK_LIB([z],[gzwrite])
 AC_CHECK_LIB([eigen],[eigenDiagMat],[],[
   AC_CHECK_LIB([eigen],[main])
 ])
@@ -67,19 +72,16 @@ AS_IF([test "x${CMAKE_BINARY}" != "x"],[
           test -n "${CPPFLAGS}" && export CPPFLAGS="${CPPFLAGS} ${EIGEN_CFLAGS}"
         fi
       fi
-    ],[
-      PKG_CHECK_MODULES([EIGEN2],[eigen2],[
-        if test "x${EIGEN2_CFLAGS}" != "x"; then
-          test -n "${EIGEN2_CFLAGS}" && echo "EIGEN2_CFLAGS are ${EIGEN2_CFLAGS}"
-          if test "x${CFLAGS}" = "x"; then
-            test -z "${CFLAGS}" && export CFLAGS="${EIGEN2_CFLAGS}"
-          elif test "x${CPPFLAGS}" = "x"; then
-            test -z "${CPPFLAGS}" && export CPPFLAGS="${EIGEN2_CFLAGS}"
-          else
-            test -n "${CPPFLAGS}" && export CPPFLAGS="${CPPFLAGS} ${EIGEN2_CFLAGS}"
-          fi
+      if test "x${EIGEN_LIBS}" != "x"; then
+        test -n "${EIGEN_LIBS}" && echo "EIGEN_LIBS are ${EIGEN_LIBS}"
+        if test "x${LIBS}" = "x"; then
+          test -z "${LIBS}" && export LIBS="${EIGEN_LIBS}"
+        else
+          test -n "${LIBS}" && export LIBS="${LIBS} ${EIGEN_LIBS}"
         fi
-      ])dnl
+      fi
+    ],[
+      dnl# Don't do eigen2; that's too old. Just do eigen3 instead:
       PKG_CHECK_MODULES([EIGEN3],[eigen3],[
         if test "x${EIGEN3_CFLAGS}" != "x"; then
           test -n "${EIGEN3_CFLAGS}" && echo "EIGEN3_CFLAGS are ${EIGEN3_CFLAGS}"
@@ -89,6 +91,14 @@ AS_IF([test "x${CMAKE_BINARY}" != "x"],[
             test -z "${CPPFLAGS}" && export CPPFLAGS="${EIGEN3_CFLAGS}"
           else
             test -n "${CPPFLAGS}" && export CPPFLAGS="${CPPFLAGS} ${EIGEN3_CFLAGS}"
+          fi
+        fi
+        if test "x${EIGEN3_LIBS}" != "x"; then
+          test -n "${EIGEN3_LIBS}" && echo "EIGEN3_LIBS are ${EIGEN3_LIBS}"
+          if test "x${LIBS}" = "x"; then
+            test -z "${LIBS}" && export LIBS="${EIGEN3_LIBS}"
+          else
+            test -n "${LIBS}" && export LIBS="${LIBS} ${EIGEN3_LIBS}"
           fi
         fi
       ])dnl
