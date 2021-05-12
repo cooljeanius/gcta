@@ -25,10 +25,11 @@ CXX_MAC = @CXX@
 # Library EIGEN (version 3.0.3) is freely available at http://eigen.tuxfamily.org/
 EigenLib = ./eigen
 
-# Any other compiler flags here ( -Wall, -g, etc)
+# Any other compiler flags here (-Wall, -g, etc.)
 CPPFLAGS = @CPPFLAGS@
 CXXFLAGS = @CXXFLAGS@
-CXXFLAGS += -w -O3 -I $(EigenLib) -DEIGEN_NO_DEBUG -msse2 -I.
+# For some reason removing -O3 from here allowed compilation to succeed?
+CXXFLAGS += -Wno-unused -I$(EigenLib) -DEIGEN_NO_DEBUG -msse2 -I.
 LDFLAGS = @LDFLAGS@
 
 @ifGNUmake@ifdef SINGLE_PRECISION
@@ -105,3 +106,6 @@ FORCE:
 
 clean-local:
 	@RM_PROG@ -f *.o *~
+
+check-local: $(OUTPUT)
+	stat $(OUTPUT) || test -x $(OUTPUT)

@@ -33,8 +33,14 @@
 /* Define to 1 if you have the `crt0.o' library (-lcrt0.o). */
 #undef HAVE_LIBCRT0_O
 
+/* Define to 1 if you have the `c++' library (-lc++). */
+#undef HAVE_LIBC__
+
 /* Define to 1 if you have the `eigen' library (-leigen). */
 #undef HAVE_LIBEIGEN
+
+/* Define to 1 if you have the `stdc++' library (-lstdc++). */
+#undef HAVE_LIBSTDC__
 
 /* Define to 1 if you have the `z' library (-lz). */
 #undef HAVE_LIBZ

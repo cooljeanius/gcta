@@ -42,8 +42,15 @@ AC_CHECK_LIB([z],[gzwrite])
 AC_CHECK_LIB([eigen],[eigenDiagMat],[],[
   AC_CHECK_LIB([eigen],[main])
 ])
-# FIXME: Replace `main' with a function in `-lcrt0.o':
-AC_CHECK_LIB([crt0.o],[main])dnl
+AC_CHECK_LIB([crt0.o],[main])
+AC_SEARCH_LIBS([std::locale::locale],[stdc++ c++ msvc++ stdlocale locale intl])
+AC_CHECK_LIB([stdc++],[main],[],[
+  AC_CHECK_LIB([c++],[main])dnl
+])dnl
+
+if test "x${LIBS}" != "x"; then
+  test -n "${LIBS}" && export LIBS="`echo ${LIBS} | tr \  \\n | uniq | tr \\n \ `"
+fi
 
 # AX_* macros are from the autoconf-archive package
 AX_CXX_COMPLEX_MATH_IN_NAMESPACE_STD

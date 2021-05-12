@@ -5,6 +5,7 @@
 *.log
 *.status
 *.hg*
+*.tar.gz
 eigen/CMakeCache.txt
 eigen/*/CmakeCache.txt
 eigen/CMakeFiles/*
@@ -19,6 +20,8 @@ eigen/failtest/*
 eigen/lapack/*
 eigen/test*/*
 eigen/unsupported/*
+gcta-0.93.9/*
+gcta64
 stamp-h*
 libtool
 config.h

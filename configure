@@ -18854,7 +18854,6 @@ fi
 
 fi
 
-# FIXME: Replace `main' with a function in `-lcrt0.o':
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lcrt0.o" >&5
 printf %s "checking for main in -lcrt0.o... " >&6; }
 if test ${ac_cv_lib_crt0_o_main+y}
@@ -18893,6 +18892,151 @@ then :
 
   LIBS="-lcrt0.o $LIBS"
 
+fi
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for library containing std::locale::locale" >&5
+printf %s "checking for library containing std::locale::locale... " >&6; }
+if test ${ac_cv_search_std__locale__locale+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_func_search_save_LIBS=$LIBS
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+char std::locale::locale ();
+int
+main (void)
+{
+return std::locale::locale ();
+  ;
+  return 0;
+}
+_ACEOF
+for ac_lib in '' stdc++ c++ msvc++ stdlocale locale intl
+do
+  if test -z "$ac_lib"; then
+    ac_res="none required"
+  else
+    ac_res=-l$ac_lib
+    LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
+  fi
+  if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_search_std__locale__locale=$ac_res
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext
+  if test ${ac_cv_search_std__locale__locale+y}
+then :
+  break
+fi
+done
+if test ${ac_cv_search_std__locale__locale+y}
+then :
+
+else $as_nop
+  ac_cv_search_std__locale__locale=no
+fi
+rm conftest.$ac_ext
+LIBS=$ac_func_search_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_search_std__locale__locale" >&5
+printf "%s\n" "$ac_cv_search_std__locale__locale" >&6; }
+ac_res=$ac_cv_search_std__locale__locale
+if test "$ac_res" != no
+then :
+  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
+
+fi
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lstdc++" >&5
+printf %s "checking for main in -lstdc++... " >&6; }
+if test ${ac_cv_lib_stdcpp_main+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lstdc++  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main (void)
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_stdcpp_main=yes
+else $as_nop
+  ac_cv_lib_stdcpp_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_stdcpp_main" >&5
+printf "%s\n" "$ac_cv_lib_stdcpp_main" >&6; }
+if test "x$ac_cv_lib_stdcpp_main" = xyes
+then :
+  printf "%s\n" "#define HAVE_LIBSTDC__ 1" >>confdefs.h
+
+  LIBS="-lstdc++ $LIBS"
+
+else $as_nop
+
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for main in -lc++" >&5
+printf %s "checking for main in -lc++... " >&6; }
+if test ${ac_cv_lib_cpp_main+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lc++  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+
+int
+main (void)
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"
+then :
+  ac_cv_lib_cpp_main=yes
+else $as_nop
+  ac_cv_lib_cpp_main=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_cpp_main" >&5
+printf "%s\n" "$ac_cv_lib_cpp_main" >&6; }
+if test "x$ac_cv_lib_cpp_main" = xyes
+then :
+  printf "%s\n" "#define HAVE_LIBC__ 1" >>confdefs.h
+
+  LIBS="-lc++ $LIBS"
+
+fi
+
+fi
+
+if test "x${LIBS}" != "x"; then
+  test -n "${LIBS}" && export LIBS="`echo ${LIBS} | tr \  \\n | uniq | tr \\n \ `"
 fi
 
 # AX_* macros are from the autoconf-archive package
