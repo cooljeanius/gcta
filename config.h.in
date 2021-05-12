@@ -21,6 +21,9 @@
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
+/* Define to 1 if you have the <Eigen/Dense> header file. */
+#undef HAVE_EIGEN_DENSE
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
@@ -57,6 +60,10 @@
 /* Define to 1 if you have the `sqrt' function. */
 #undef HAVE_SQRT
 
+/* Define to 1 if you have the <src/Core/util/DisableStupidWarnings.h> header
+   file. */
+#undef HAVE_SRC_CORE_UTIL_DISABLESTUPIDWARNINGS_H
+
 /* Define to 1 if you have the `stable_sort' function. */
 #undef HAVE_STABLE_SORT
 
@@ -69,15 +76,13 @@
 /* Define to 1 if you have the <stdio.h> header file. */
 #undef HAVE_STDIO_H
 
-/* Always define to 1, for backward compatibility. You can assume <stdlib.h>
-   exists. */
+/* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
-/* Always define to 1, for backward compatibility. You can assume <string.h>
-   exists. */
+/* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
 /* Define to 1 if you have the `str_strm' function. */
@@ -94,6 +99,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the <unsupported/Eigen/SparseExtra> header file. */
+#undef HAVE_UNSUPPORTED_EIGEN_SPARSEEXTRA
 
 /* define if the compiler has the method std::vector::at (std::size_t) */
 #undef HAVE_VECTOR_AT
@@ -134,8 +142,9 @@
 /* Define if ISO C++ TR1 header files are present. */
 #undef STDCXX_TR1_HEADERS
 
-/* Always define to 1, for backward compatibility. You can assume the C90
-   standard headers exist. */
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
 /* Version number of package */
