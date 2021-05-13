@@ -12,6 +12,8 @@ LICENSE: Released under GNU General Public License, v2 (see COPYING.txt)
 
 DOCUMENTATION: http://gump.qimr.edu.au/gcta/
 
+WEBSITE/ORIGINAL SOURCE: http://web.archive.org/web/20160317052613/http://cnsgenomics.com/software/gcta/download.html
+
 LIBRARY: require the library EIGEN (version 3.0.3) support (see http://eigen.tuxfamily.org/). You will need to specify the path of library EIGEN in the Makefile (keyword EigenLib).
 
 
