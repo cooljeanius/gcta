@@ -1,0 +1,27 @@
+on:
+  push:
+  pull_request:
+
+name: check
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install EIGEN library
+        run: sudo apt install libeigen3-dev
+
+      - name: CMake version
+        run: cmake --version
+
+      - name: configure
+        run: ./configure
+
+      - name: make
+        run: make
+
+      - name: install
+        run: make install
+
