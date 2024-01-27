@@ -71,7 +71,7 @@ jobs:
     - name: Dependencies
       run: |
         sudo apt-get -qq update
-        sudo apt-get install libeigen3-dev
+        sudo apt-get install libeigen3-dev libeigen-stl-containers-dev eigensoft
 
     # Autobuild attempts to build any compiled languages (C/C++, C#, Go, Java, or Swift).
     # If this step fails, then you should remove it and run the build manually (see below)
