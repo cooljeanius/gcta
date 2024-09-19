@@ -277,7 +277,7 @@ void gcta::make_grm(bool grm_xchr_flag, bool output_bin, int grm_mtd)
 		    if(grm_mtd==1){
                 for(k=0, denom=0.0; k<_include.size(); k++){
                     if(X[i][k]<1e5 && X[j][k]<1e5){
-                        A[i][j]+=X[i][k]*X[j][k];
+                        A[i][j] += static_cast<double>(X[i][k]) * X[j][k];
                         denom+=d[k];
                         A_N[i][j]++;
                     }
