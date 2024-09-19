@@ -643,7 +643,7 @@ double gcta::lgL_reduce_mdl(double y_Ssq, bool no_constrain)
 
 double gcta::reml_iteration(double y_Ssq, eigenMatrix &Vi_X, eigenMatrix &Xt_Vi_X_i, eigenMatrix &Hi, eigenVector &Py, eigenVector &varcmp, bool prior_var_flag, bool no_constrain)
 {
-	char *mtd_str[3]={"AI-REML algorithm", "REML equation ...", "EM-REML algorithm ..."};
+    const char *mtd_str[3]={"AI-REML algorithm", "REML equation ...", "EM-REML algorithm ..."};
     int i=0, constrain_num=0, iter=0, reml_mtd_tmp=_reml_mtd;
     double logdet=0.0, logdet_Xt_Vi_X=0.0, prev_lgL=-1e20, lgL=-1e20, dlogL=1000.0;
     eigenVector prev_varcmp(varcmp), varcomp_init(varcmp);

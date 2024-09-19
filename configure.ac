@@ -18,15 +18,44 @@ m4_ifdef([AM_WITH_REGEX],[
 ])dnl
 
 # Checks for programs.
+m4_ifdef([AM_PROG_AR],[
+  AM_PROG_AR
+  ## ...
+],[
+  AC_CHECK_TOOL([AR],[ar])dnl
+])dnl
+m4_ifdef([AC_PROG_AR],[
+  if test "x${AR}" = "x" && test "x${ac_cv_prog_AR}" = "x"; then
+    test -z "${AR}" || unset AR
+    test -z "${ac_cv_prog_AR}" || unset ac_cv_prog_AR
+    AC_PROG_AR
+  fi
+],[
+  test -x "`which ar`" && echo "ar is `which ar`"
+])dnl
 AM_PROG_AS
-AC_PROG_CC
+if test "x${CC}" = "x"; then
+  test -z "${CC}" || unset CC
+  AC_PROG_CC
+else
+  test -n "${CC}" && export CC
+fi
 m4_ifdef([AM_PROG_CC_C_O],[
   AM_PROG_CC_C_O
 ])dnl
 AC_PROG_CPP
 AC_SUBST([CPPFLAGS])dnl
 AC_PROG_CXX
-AC_PATH_PROGS([RM_PROG],[rm grm])
+  ## keep autoscan happy:
+if test "x${RANLIB}" = "x"; then
+  test -z "${RANLIB}" || unset RANLIB
+  AC_PROG_RANLIB
+else
+  test -n "${RANLIB}" && export RANLIB
+  AC_SUBST([RANLIB])dnl
+  ## (keep from being empty)
+fi
+AC_PATH_PROGS([RM_PROG],[rm grm],[rm])
 AC_SUBST([RM_PROG])dnl
 LT_INIT([win32-dll])
 LT_LANG([C++])dnl
@@ -88,7 +117,7 @@ AS_IF([test "x${CMAKE_BINARY}" != "x"],[
         fi
       fi
     ],[
-      dnl# Don't do eigen2; that's too old. Just do eigen3 instead:
+      dnl# Avoid eigen2, as that is too old. Just do eigen3 instead:
       PKG_CHECK_MODULES([EIGEN3],[eigen3],[
         if test "x${EIGEN3_CFLAGS}" != "x"; then
           test -n "${EIGEN3_CFLAGS}" && echo "EIGEN3_CFLAGS are ${EIGEN3_CFLAGS}"
@@ -121,7 +150,7 @@ AC_CHECK_HEADERS([Eigen/Dense src/Core/util/DisableStupidWarnings.h \
                   unsupported/Eigen/SparseExtra])dnl
 
 if test "x${ac_cv_header_stdio_h}" = "x"; then
-  test -z "${ac_cv_header_stdio_h}"
+  test -z "${ac_cv_header_stdio_h}" || unset ac_cv_header_stdio_h
   AC_CHECK_HEADERS([stdio.h])
 fi
 

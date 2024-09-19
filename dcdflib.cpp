@@ -9197,7 +9197,7 @@ long fifmod(long a,long b)
 FTNSTOP:
 Prints msg to standard error and then exits
 ************************************************************************/
-void ftnstop(char* msg)
+void ftnstop(const char* msg)
 /* msg - error message */
 {
   if (msg != NULL) fprintf(stderr,"%s\n",msg);

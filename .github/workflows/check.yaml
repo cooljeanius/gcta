@@ -1,3 +1,4 @@
+---
 on:
   push:
   pull_request:
@@ -24,4 +25,3 @@ jobs:
 
       - name: install
         run: make install
-

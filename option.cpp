@@ -108,7 +108,7 @@ void option(int option_num, char* option_str[])
 	reml_drop.push_back(1);
 
     int argc=option_num;
-    vector<char *> argv(option_num+2);
+    vector<const char *> argv(option_num+2);
     for(i=0; i<option_num; i++) argv[i]=option_str[i];
     argv[option_num]="gcta"; argv[option_num+1]="gcta";
 	for(i=1; i<argc; i++){

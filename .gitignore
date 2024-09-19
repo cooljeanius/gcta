@@ -24,8 +24,10 @@ gcta-0.93.9/*
 gcta64
 stamp-h*
 libtool
+confdefs.h
 config.h
 configure.lineno
+conftest*
 Makefile
 Makefile*orig
 m4/autoconf/*
