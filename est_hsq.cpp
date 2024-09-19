@@ -285,7 +285,7 @@ void gcta::fit_reml(string grm_file, string phen_file, string qcovar_file, strin
             string errmsg2=errmsg.str();
             coeff_mat(E_str[j], E_float[j], errmsg1, errmsg2);
             mbuf=((E_float[j])*(E_float[j]).transpose());
-            for(i=0; i<grm_files.size(); i++, pos++) (_A.block(0,pos*_n,_n,_n))=(_A.block(0,i*_n,_n,_n)).array()*mbuf.array();
+            for(i=0; i<grm_files.size(); i++, pos++) (_A.block(0,pos*_n,_n,_n))=(_A.block(0,static_cast<Index>(i)*_n,_n,_n)).array()*mbuf.array();
         }
     }
 
