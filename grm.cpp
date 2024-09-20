@@ -230,7 +230,7 @@ void gcta::make_grm(bool grm_xchr_flag, bool output_bin, int grm_mtd)
     if(grm_mtd==1){
         for(j=0; j<_include.size(); j++){
             for(i=0, k=0; i<_keep.size(); i++){
-                if(X[i][j]<1e5){ d[j]+=X[i][j]*X[i][j]; k++; }
+                if(X[i][j]<1e5){ d[j]+=static_cast<double>(X[i][j]) * X[i][j]; k++; }
             }
             if(k>0) d[j]/=(double)k;
         }
