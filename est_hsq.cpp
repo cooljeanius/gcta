@@ -264,7 +264,7 @@ void gcta::fit_reml(string grm_file, string phen_file, string qcovar_file, strin
         }
         for(j=0; j<qE_fac_num; j++){
             mbuf=((qE_float.block(0,j,_n,1))*(qE_float.block(0,j,_n,1)).transpose());
-            for(i=0; i<grm_files.size(); i++, pos++) (_A.block(0,pos*_n,_n,_n))=(_A.block(0,i*_n,_n,_n)).array()*mbuf.array();
+            for(i=0; i<grm_files.size(); i++, pos++) (_A.block(0,static_cast<Index>(pos)*_n,_n,_n))=(_A.block(0,static_cast<Index>(i)*_n,_n,_n)).array()*mbuf.array();
         }
     }
     if(GE_flag){
