@@ -933,7 +933,7 @@ void gcta::em_reml(eigenMatrix &P, eigenVector &Py, eigenVector &prev_varcmp, ei
 	// Calculate R
 	Py=P*_y;
 	eigenVector R(_r_indx.size()+1);
-	for(i=0; i<_r_indx.size(); i++) R(i)=(Py.transpose()*(_A.block(0,_r_indx[i]*_n,_n,_n))*Py)(0,0);
+	for(i=0; i<_r_indx.size(); i++) R(i)=(Py.transpose()*(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n))*Py)(0,0);
 	R(_r_indx.size())=Py.squaredNorm();
 
 	// Calculate variance component
