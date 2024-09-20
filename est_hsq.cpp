@@ -759,7 +759,7 @@ void gcta::bend_A()
     cout<<"Bending the GRM(s) to be positive-definite (may take a long time if there are multiple GRMs)..."<<endl;
     int i=0;
     for(i=0; i<_r_indx.size(); i++){
-        SelfAdjointEigenSolver<eigenMatrix> eigensolver(_A.block(0,_r_indx[i]*_n,_n,_n));
+        SelfAdjointEigenSolver<eigenMatrix> eigensolver(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n));
         eigenVector eval=eigensolver.eigenvalues();
         if(bending_eigenval(eval)){
             _A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n)=eigensolver.eigenvectors()*eigenDiagMat(eval)*eigensolver.eigenvectors().transpose();
