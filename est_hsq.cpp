@@ -762,7 +762,7 @@ void gcta::bend_A()
         SelfAdjointEigenSolver<eigenMatrix> eigensolver(_A.block(0,_r_indx[i]*_n,_n,_n));
         eigenVector eval=eigensolver.eigenvalues();
         if(bending_eigenval(eval)){
-            _A.block(0,_r_indx[i]*_n,_n,_n)=eigensolver.eigenvectors()*eigenDiagMat(eval)*eigensolver.eigenvectors().transpose();
+            _A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n)=eigensolver.eigenvectors()*eigenDiagMat(eval)*eigensolver.eigenvectors().transpose();
             cout<<"Bending the "<<i+1<<"th GRM completed."<<endl;
         }
     }
