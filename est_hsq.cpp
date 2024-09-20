@@ -836,7 +836,7 @@ void gcta::calcu_Hi(eigenMatrix &P, eigenMatrix &Hi)
     vector<eigenMatrix> PA(_r_indx.size());
 	for(i=0; i<_r_indx.size(); i++){
 	    (PA[i]).resize(_n, _n);
-	    (PA[i])=P*(_A.block(0,_r_indx[i]*_n,_n,_n));
+	    (PA[i])=P*(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n));
 	}
 
 	// Calculate Hi
