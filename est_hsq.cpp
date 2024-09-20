@@ -875,7 +875,7 @@ void gcta::reml_equation(eigenMatrix &P, eigenMatrix &Hi, eigenVector &Py, eigen
 	// Calculate R
 	Py=P*_y;
 	eigenVector R(_r_indx.size()+1);
-	for(int i=0; i<_r_indx.size(); i++) R(i)=(Py.transpose()*(_A.block(0,_r_indx[i]*_n,_n,_n))*Py)(0,0);
+	for(int i=0; i<_r_indx.size(); i++) R(i)=(Py.transpose()*(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n))*Py)(0,0);
 	R(_r_indx.size())=Py.squaredNorm();
 
 	// Calculate variance component
@@ -892,7 +892,7 @@ void gcta::ai_reml(eigenMatrix &P, eigenMatrix &Hi, eigenVector &Py, eigenVector
  	Py=P*_y;
 	eigenVector cvec(_n);
 	eigenMatrix APy(_n, _r_indx.size());
-	for(i=0; i<_r_indx.size(); i++) (APy.col(i))=(_A.block(0,_r_indx[i]*_n,_n,_n))*Py;
+	for(i=0; i<_r_indx.size(); i++) (APy.col(i))=(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n))*Py;
 
 	// Calculate Hi
 	eigenVector R(_r_indx.size()+1);
