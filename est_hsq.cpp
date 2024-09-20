@@ -534,7 +534,7 @@ void gcta::reml(bool pred_rand_eff, bool est_fix_eff, vector<double> &reml_prior
     eigenMatrix u;
     if(pred_rand_eff){
         u.resize(_n, _r_indx.size());
-        for(i=0; i<_r_indx.size(); i++) (u.col(i))=(((_A.block(0,_r_indx[i]*_n,_n,_n))*Py)*varcmp[i]);
+        for(i=0; i<_r_indx.size(); i++) (u.col(i))=(((_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n))*Py)*varcmp[i]);
     }
 	eigenVector b;
 	if(est_fix_eff){
