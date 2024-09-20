@@ -1013,7 +1013,7 @@ void gcta::blup_snp_dosage()
 	vector<double> var_SNP(_include.size()); // variance of each SNP, 2pq
     eigenMatrix b_SNP=eigenMatrix::Zero(_include.size(), col_num); // variance of each SNP, 2pq
 	for(j=0; j<_include.size(); j++){
-        for(i=0; i<_keep.size(); i++) var_SNP[j]+=_geno_dose[i][_include[j]]*_geno_dose[i][_include[j]];
+        for(i=0; i<_keep.size(); i++) var_SNP[j]+=(double)_geno_dose[i][_include[j]]*_geno_dose[i][_include[j]];
         var_SNP[j]/=(double)(_keep.size()-1);
         if(fabs(var_SNP[j])<1.0e-50) var_SNP[j]=0.0;
         else var_SNP[j]=1.0/var_SNP[j];
