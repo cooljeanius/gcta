@@ -742,7 +742,7 @@ bool gcta::calcu_Vi(eigenMatrix &Vi, eigenVector &prev_varcmp, double &logdet, i
     }
     else{
         Vi.diagonal()=eigenVector::Constant(_n, prev_varcmp[_r_indx.size()]);
-        for(i=0; i<_r_indx.size(); i++) Vi+=(_A.block(0,_r_indx[i]*_n,_n,_n))*prev_varcmp[i];
+        for(i=0; i<_r_indx.size(); i++) Vi+=(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n)) * prev_varcmp[i];
         if(!comput_inverse_logdet_LDLT(Vi, prev_varcmp, logdet)){
             cout<<"Warning: the variance-covaraince matrix V is negative-definite."<<endl;
             bend_A();
