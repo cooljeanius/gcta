@@ -953,7 +953,7 @@ void gcta::calcu_tr_PA(eigenMatrix &P, eigenVector &tr_PA)
 	for(i=0; i<_r_indx.size(); i++){
 		d_buf=0.0;
 		for(k=0; k<_n; k++){
-			for(l=0; l<_n; l++) d_buf+=P(k,l)*(_A.block(0,_r_indx[i]*_n,_n,_n))(k,l);
+			for(l=0; l<_n; l++) d_buf+=P(k,l)*(_A.block(0, static_cast<Index>(_r_indx[i]) * _n, _n, _n))(k,l);
 		}
 		tr_PA(i)=d_buf;
 	}
