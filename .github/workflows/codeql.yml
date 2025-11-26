@@ -84,7 +84,7 @@ jobs:
         run: |
           sudo apt-get -qq update
           sudo apt-get -y install libeigen3-dev libeigen3-doc eigensoft \
-            ibeigenbase-resgen-java libeigenbase-resgen-java-doc \
+            libeigenbase-resgen-java libeigenbase-resgen-java-doc \
             libeigenbase-farrago-java
 
       # Autobuild attempts to build any compiled languages
