@@ -19,11 +19,13 @@ on:
       - master
       - dependabot/*
       - autofix/alert-*
+      - github_actions/*
   pull_request:
     branches:
       - master
       - dependabot/*
       - autofix/alert-*
+      - github_actions/*
   schedule:
     - cron: '24 12 * * 2'
 
@@ -48,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['c-cpp', 'python']
+        language: ['actions', 'c-cpp', 'python']
         # CodeQL supports the following languages:
         # 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript',
         # 'python', 'ruby', 'swift'
@@ -81,8 +83,9 @@ jobs:
       - name: Dependencies
         run: |
           sudo apt-get -qq update
-          sudo apt-get -y install libeigen3-dev libeigen-stl-containers-dev \
-            eigensoft
+          sudo apt-get -y install libeigen3-dev libeigen3-doc eigensoft \
+            ibeigenbase-resgen-java libeigenbase-resgen-java-doc \
+            libeigenbase-farrago-java
 
       # Autobuild attempts to build any compiled languages
       # (C/C++, C#, Go, Java, or Swift).
